@@ -11,7 +11,7 @@ urls = { repository = "https://github.com/mac-brand-spaces/pyconfig" }
 
 [tool.setuptools]
 packages = [
-  "core",
+  "pyconfig",
 ]
 
 [project.scripts]

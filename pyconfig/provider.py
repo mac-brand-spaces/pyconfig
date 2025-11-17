@@ -50,6 +50,19 @@ class ConfigProvider:
     fatal("Config value for '%s' is not set", key)
     exit(1)
 
+def _find_config_file(name: str, search_dir: str = curdir) -> str | None:
+    search_dir = path.abspath(search_dir)
+    # Check if the config file exists in the current directory
+    config_file = path.join(search_dir, name)
+    if path.isfile(config_file):
+      rel_path = path.relpath(config_file, curdir)
+      return rel_path
+
+    # Check parent directories
+    parent_dir = path.dirname(search_dir)
+    if parent_dir == search_dir or parent_dir == "": # Reached the root directory
+      return None
+    return _find_config_file(name, parent_dir)
 
 class JsonFileConfigProvider(ConfigProvider):
   filepath: str
@@ -74,18 +87,11 @@ class JsonFileConfigProvider(ConfigProvider):
     return items
 
   @staticmethod
-  def find_config_file(name: str, search_dir: str = curdir) -> str | None:
-    search_dir = path.abspath(search_dir)
-    # Check if the config file exists in the current directory
-    config_file = path.join(search_dir, name)
-    if path.isfile(config_file):
-      return path.relpath(config_file, curdir)
-
-    # Check parent directories
-    parent_dir = path.dirname(search_dir)
-    if parent_dir == search_dir or parent_dir == "": # Reached the root directory
+  def find_config_file(name: str, search_dir: str = curdir) -> JsonFileConfigProvider | None:
+    filepath = _find_config_file(name, search_dir)
+    if filepath is None:
       return None
-    return JsonFileConfigProvider.find_config_file(name, parent_dir)
+    return JsonFileConfigProvider(filepath)
 
 class EnvConfigProvider(ConfigProvider):
   def __init__(self):

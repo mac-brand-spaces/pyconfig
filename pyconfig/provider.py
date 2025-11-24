@@ -1,5 +1,5 @@
 from os import environ, curdir, path
-from typing import Any, Callable
+from typing import Any, Callable, Union
 from logging import fatal
 
 class ConfigProvider:
@@ -87,7 +87,7 @@ class JsonFileConfigProvider(ConfigProvider):
     return items
 
   @staticmethod
-  def find_config_file(name: str, search_dir: str = curdir) -> JsonFileConfigProvider | None:
+  def find_config_file(name: str, search_dir: str = curdir) -> Union["JsonFileConfigProvider", None]:
     filepath = _find_config_file(name, search_dir)
     if filepath is None:
       return None

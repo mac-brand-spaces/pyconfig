@@ -1,8 +1,7 @@
-from .provider import (
-  CompositeConfigProvider,
-  EnvConfigProvider,
-  JsonFileConfigProvider
-)
+from .provider import ConfigProvider
+from .composite_provider import CompositeConfigProvider
+from .json_file_provider import JsonFileConfigProvider
+from .env_provider import EnvConfigProvider
 
 from .config import (
   add_provider,

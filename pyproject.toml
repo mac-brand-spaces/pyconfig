@@ -13,7 +13,7 @@ urls = { repository = "https://github.com/mac-brand-spaces/pyconfig" }
 packages = [
   "pyconfig",
 ]
-package-data = { "pyconfig" = ["py.typed"] }
+package-data = { pyconfig = ["py.typed"] }
 
 [project.scripts]
 

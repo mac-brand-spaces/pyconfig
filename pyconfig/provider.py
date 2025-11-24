@@ -1,5 +1,4 @@
-from os import curdir, path
-from typing import Any, Callable, Union, override
+from typing import Any, Callable
 from logging import fatal
 
 class ConfigProvider:

@@ -1,4 +1,5 @@
-from .provider import ConfigProvider, CompositeConfigProvider
+from .provider import ConfigProvider
+from .composite_provider import CompositeConfigProvider
 
 _global_composite_provider: CompositeConfigProvider | None = None
 

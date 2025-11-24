@@ -6,7 +6,6 @@ class CompositeConfigProvider(ConfigProvider):
 
   def __init__(self, providers: list[ConfigProvider]):
     super().__init__()
-    del self.config
 
     self.providers = providers
     self.config = self._merge_configs()

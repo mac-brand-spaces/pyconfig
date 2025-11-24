@@ -21,6 +21,7 @@ class JsonFileConfigProvider(ConfigProvider):
   filepath: str
 
   def __init__(self, filepath: str):
+    super().__init__()
     import json
     self.filepath = filepath
     with open(filepath, "r") as f:

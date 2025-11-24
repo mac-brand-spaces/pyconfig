@@ -4,7 +4,6 @@ from typing import override
 class EnvConfigProvider(ConfigProvider):
   def __init__(self):
     super().__init__()
-    del self.config
 
     from os import environ
     self.environ = environ

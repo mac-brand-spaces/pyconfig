@@ -19,6 +19,9 @@ def get_value(key: str, default: str | None = None) -> str:
 def get_value_int(key: str, default: int | None = None) -> int:
   return get_global_config_provider().get_value_int(key, default)
 
+def get_value_float(key: str, default: int | None = None) -> float:
+  return get_global_config_provider().get_value_float(key, default)
+
 def get_value_bool(key: str, default: bool | None = None) -> bool:
   return get_global_config_provider().get_value_bool(key, default)
 

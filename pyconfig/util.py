@@ -1,4 +1,7 @@
 from os import curdir, path
+from typing import cast
+
+_UNSET = cast(None, object())
 
 def find_config_file(name: str, search_dir: str) -> str | None:
   search_dir = path.abspath(search_dir)

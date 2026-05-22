@@ -23,7 +23,7 @@ class ConfigProvider:
     config_value = self._get(key)
     if config_value is not None: return self._cast_type(key, config_value, str)
 
-    if default != None: return default
+    if default != _UNSET: return default
     fatal("Config value for '%s' is not set", key)
     exit(1)
 
@@ -31,7 +31,7 @@ class ConfigProvider:
     config_value = self._get(key)
     if config_value is not None: return self._cast_type(key, config_value, int)
 
-    if default != None: return default
+    if default != _UNSET: return default
     fatal("Config value for '%s' is not set", key)
     exit(1)
 
@@ -39,7 +39,7 @@ class ConfigProvider:
     config_value = self._get(key)
     if config_value is not None: return self._cast_type(key, config_value, float)
 
-    if default != None: return default
+    if default != _UNSET: return default
     fatal("Config value for '%s' is not set", key)
     exit(1)
 
@@ -48,7 +48,7 @@ class ConfigProvider:
     if config_value is not None and isinstance(config_value, str): return config_value.lower() in ['1', 'true', 'yes', 'on']
     if config_value is not None: return self._cast_type(key, config_value, bool)
 
-    if default != None: return default
+    if default != _UNSET: return default
     fatal("Config value for '%s' is not set", key)
     exit(1)
 
@@ -58,6 +58,6 @@ class ConfigProvider:
     if config_value is not None and isinstance(config_value, list): return [self._cast_type(key, v, str) for v in config_value]
     if config_value is not None: return self._cast_type(key, config_value, list)
 
-    if default != None: return default
+    if default != _UNSET: return default
     fatal("Config value for '%s' is not set", key)
     exit(1)
